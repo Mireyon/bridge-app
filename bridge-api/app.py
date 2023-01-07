@@ -1,13 +1,19 @@
-from flask import Flask
+from flask import Flask, request
 from flask_cors import CORS
+from process_data import add_db, get_db
 
 app = Flask(__name__)
 CORS(app)
 
-@app.route('/')
-def hello_world():
-	x = 'world'
-	return f"Hello, {x}"
+@app.route('/data', methods=['POST'])
+def PostData():
+    payload = request.get_json()
+    return add_db(payload)
+
+@app.route('/data', methods=['GET'])
+def GetData():
+    id = request.args.get('id')
+    return get_db(id)
 
 if __name__ == "__main__":
     app.run(debug=True)
