@@ -29,10 +29,9 @@ def python2json(data):
             "image": data.image,}
 
 def add_db(payload):
-
     data = json2python(payload)
     Database.add_data(data)
-    return 'OK', 200
+    return 'Message added', 200
 
 def get_db(id):
     return Database.get_data(id)

@@ -5,6 +5,10 @@ from process_data import add_db, get_db
 app = Flask(__name__)
 CORS(app)
 
+@app.route('/')
+def hello_world():
+	return f"Hello, world"
+
 @app.route('/data', methods=['POST'])
 def PostData():
     payload = request.get_json()
@@ -16,4 +20,4 @@ def GetData():
     return get_db(id)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host='0.0.0.0')
